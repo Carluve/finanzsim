@@ -49,7 +49,7 @@ Escribe un resumen pedagógico final con conclusiones sobre su aprendizaje.`;
 
     // Using Workers AI with AI Gateway routing
     const response = await context.env.AI.run(
-      '@cf/meta/llama-3.1-8b-instruct',
+      '@cf/meta/llama-3.3-70b-instruct-fp8-fast',
       {
         messages: [
           {
