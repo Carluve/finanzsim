@@ -77,10 +77,8 @@ const App: React.FC = () => {
     return (
       <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4 transition-colors duration-300">
         <div className="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full text-center border border-slate-200 transition-all animate-slide-up">
-          <div className="mb-6 bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto text-blue-600">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-8 h-8">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.5 4.5L21.75 7.5M21.75 7.5V12M21.75 7.5H17.25" />
-            </svg>
+          <div className="mb-6 w-20 h-20 rounded-full flex items-center justify-center mx-auto overflow-hidden">
+            <img src="/logo.png" alt="FinanzSim Logo" className="w-full h-full object-cover" />
           </div>
           <h1 className="text-3xl font-bold text-slate-900 mb-2 font-montserrat">FinanzSim</h1>
           <p className="text-slate-600 mb-8 font-poppins">Simulador de gestión financiera para estudiantes de Empresariales.</p>
