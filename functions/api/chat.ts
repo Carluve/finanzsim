@@ -47,39 +47,41 @@ Calcula si la gestión ha sido exitosa basándote en la evolución de la rentabi
 Escribe un resumen pedagógico final con conclusiones sobre su aprendizaje.`;
     }
 
-    const response = await context.env.AI.run('@cf/qwen/qwen1.5-14b-chat-awq', {
+    // Using LLaMA 3.1 8B - stable and works well
+    const response = await context.env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
       messages: [
-        { role: 'system', content: 'Eres un experto profesor de finanzas corporativas que da feedback educativo a estudiantes universitarios.' },
+        { role: 'system', content: 'Eres un experto profesor de finanzas corporativas que da feedback educativo a estudiantes universitarios. Responde siempre en español.' },
         { role: 'user', content: prompt }
       ],
       max_tokens: 1024,
     });
 
     return new Response(
-      JSON.stringify({ 
-        success: true, 
-        feedback: response.response 
+      JSON.stringify({
+        success: true,
+        feedback: response.response
       }),
-      { 
-        headers: { 
+      {
+        headers: {
           'Content-Type': 'application/json',
-          ...corsHeaders 
-        } 
+          ...corsHeaders
+        }
       }
     );
-  } catch (error) {
+  } catch (error: any) {
     console.error('AI Error:', error);
     return new Response(
-      JSON.stringify({ 
-        success: false, 
-        feedback: 'Error al conectar con la IA de análisis financiero.' 
+      JSON.stringify({
+        success: false,
+        feedback: 'Error al conectar con la IA de análisis financiero.',
+        error: error?.message || String(error)
       }),
-      { 
+      {
         status: 500,
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
-          ...corsHeaders 
-        } 
+          ...corsHeaders
+        }
       }
     );
   }
