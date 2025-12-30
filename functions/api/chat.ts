@@ -47,14 +47,25 @@ Calcula si la gestión ha sido exitosa basándote en la evolución de la rentabi
 Escribe un resumen pedagógico final con conclusiones sobre su aprendizaje.`;
     }
 
-    // Using LLaMA 3.1 8B - stable and works well
-    const response = await context.env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
-      messages: [
-        { role: 'system', content: 'Eres un experto profesor de finanzas corporativas que da feedback educativo a estudiantes universitarios. Responde siempre en español.' },
-        { role: 'user', content: prompt }
-      ],
-      max_tokens: 1024,
-    });
+    // Using Workers AI with AI Gateway routing
+    const response = await context.env.AI.run(
+      '@cf/meta/llama-3.1-8b-instruct',
+      {
+        messages: [
+          {
+            role: 'system',
+            content: 'Eres un experto profesor de finanzas corporativas que da feedback educativo a estudiantes universitarios. Responde siempre en español.'
+          },
+          { role: 'user', content: prompt }
+        ],
+        max_tokens: 1024,
+      },
+      {
+        gateway: {
+          id: 'uah-economia'
+        }
+      }
+    );
 
     return new Response(
       JSON.stringify({
