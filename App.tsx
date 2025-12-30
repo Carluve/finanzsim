@@ -110,10 +110,13 @@ const App: React.FC = () => {
         </div>
         <footer className="mt-8 text-center text-xs text-slate-400 max-w-md">
           <p className="mb-2">Pet project de investigación de la <strong>Facultad de Ciencias Económicas, Empresariales y Turismo</strong> de la Universidad de Alcalá (UAH)</p>
-          <p className="flex items-center justify-center gap-1">
+          <p className="flex items-center justify-center gap-1 mb-3">
             Powered by
             <svg className="w-4 h-4 inline" viewBox="0 0 128 128" fill="currentColor"><path d="M64.002 0C28.655 0 0 28.655 0 64c0 35.347 28.655 64 64.002 64C99.347 128 128 99.347 128 64c0-35.345-28.653-64-63.998-64zm17.136 98.028c-.543 1.623-2.085 3.453-3.981 3.453H50.844c-1.896 0-3.439-1.83-3.982-3.453L33.846 58.01c-.542-1.623.372-2.953 2.038-2.953h14.725c1.667 0 3.37 1.33 3.802 2.953l7.589 28.523 7.59-28.523c.432-1.623 2.134-2.953 3.801-2.953h14.726c1.666 0 2.58 1.33 2.037 2.953z" /></svg>
             <strong>Cloudflare</strong>
+          </p>
+          <p className="text-[10px] text-slate-300 leading-relaxed">
+            Disclaimer: Esta aplicación es un simulador educativo sin fines comerciales. Los análisis generados por IA son orientativos y no constituyen asesoramiento financiero profesional. No nos hacemos responsables del mal uso de la información, errores en las respuestas de IA, ni de la disponibilidad del servicio.
           </p>
         </footer>
       </div>
@@ -337,10 +340,13 @@ const App: React.FC = () => {
       <footer className="bg-white border-t border-slate-200 py-4 mt-8">
         <div className="max-w-7xl mx-auto px-6 text-center text-xs text-slate-400">
           <p className="mb-1">Pet project de investigación de la <strong>Facultad de Ciencias Económicas, Empresariales y Turismo</strong> de la Universidad de Alcalá (UAH)</p>
-          <p className="flex items-center justify-center gap-1">
+          <p className="flex items-center justify-center gap-1 mb-2">
             Powered by
             <svg className="w-4 h-4 inline" viewBox="0 0 128 128" fill="currentColor"><path d="M64.002 0C28.655 0 0 28.655 0 64c0 35.347 28.655 64 64.002 64C99.347 128 128 99.347 128 64c0-35.345-28.653-64-63.998-64zm17.136 98.028c-.543 1.623-2.085 3.453-3.981 3.453H50.844c-1.896 0-3.439-1.83-3.982-3.453L33.846 58.01c-.542-1.623.372-2.953 2.038-2.953h14.725c1.667 0 3.37 1.33 3.802 2.953l7.589 28.523 7.59-28.523c.432-1.623 2.134-2.953 3.801-2.953h14.726c1.666 0 2.58 1.33 2.037 2.953z" /></svg>
             <strong>Cloudflare</strong>
+          </p>
+          <p className="text-[10px] text-slate-300 leading-relaxed max-w-2xl mx-auto">
+            Disclaimer: Esta aplicación es un simulador educativo sin fines comerciales. Los análisis generados por IA son orientativos y no constituyen asesoramiento financiero profesional. No nos hacemos responsables del mal uso de la información, errores en las respuestas de IA, ni de la disponibilidad del servicio.
           </p>
         </div>
       </footer>
