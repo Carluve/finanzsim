@@ -47,17 +47,17 @@ const App: React.FC = () => {
     setLoading(true);
     const lastResult = simulation.results[simulation.results.length - 1] || null;
     const newResult = calculateYearResults(input, simulation.config.currentYear, lastResult);
-    
+
     // Get AI Feedback
     const feedback = await getAnnualFeedback(newResult);
-    
+
     setSimulation(prev => ({
       ...prev,
       results: [...prev.results, newResult],
       lastInput: input,
       aiFeedback: { ...prev.aiFeedback, [newResult.year]: feedback },
-      config: { 
-        ...prev.config, 
+      config: {
+        ...prev.config,
         currentYear: prev.config.currentYear + 1,
         isFinished: prev.config.currentYear === prev.config.totalYears
       }
@@ -86,15 +86,15 @@ const App: React.FC = () => {
           <p className="text-slate-600 mb-8 font-poppins">Simulador de gestión financiera para estudiantes de Empresariales.</p>
           <div className="space-y-4">
             <label className="block text-sm font-medium text-slate-700 text-left font-semibold">Años de simulación (1-12):</label>
-            <input 
-              type="number" 
-              min="1" 
-              max="12" 
+            <input
+              type="number"
+              min="1"
+              max="12"
               defaultValue="3"
               id="yearsInput"
               className="w-full px-4 py-3 border border-slate-300 bg-white text-slate-900 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all font-medium"
             />
-            <button 
+            <button
               onClick={() => {
                 const val = (document.getElementById('yearsInput') as HTMLInputElement).value;
                 startSimulation(parseInt(val));
@@ -108,6 +108,14 @@ const App: React.FC = () => {
             Capital Inicial: {INITIAL_CASH.toLocaleString()}€ en Tesorería.
           </div>
         </div>
+        <footer className="mt-8 text-center text-xs text-slate-400 max-w-md">
+          <p className="mb-2">Pet project de investigación de la <strong>Facultad de Ciencias Económicas, Empresariales y Turismo</strong> de la Universidad de Alcalá (UAH)</p>
+          <p className="flex items-center justify-center gap-1">
+            Powered by
+            <svg className="w-4 h-4 inline" viewBox="0 0 128 128" fill="currentColor"><path d="M64.002 0C28.655 0 0 28.655 0 64c0 35.347 28.655 64 64.002 64C99.347 128 128 99.347 128 64c0-35.345-28.653-64-63.998-64zm17.136 98.028c-.543 1.623-2.085 3.453-3.981 3.453H50.844c-1.896 0-3.439-1.83-3.982-3.453L33.846 58.01c-.542-1.623.372-2.953 2.038-2.953h14.725c1.667 0 3.37 1.33 3.802 2.953l7.589 28.523 7.59-28.523c.432-1.623 2.134-2.953 3.801-2.953h14.726c1.666 0 2.58 1.33 2.037 2.953z" /></svg>
+            <strong>Cloudflare</strong>
+          </p>
+        </footer>
       </div>
     );
   }
@@ -126,13 +134,13 @@ const App: React.FC = () => {
             <h3 className="text-xl font-bold text-slate-900 mb-2">¿Reiniciar simulación?</h3>
             <p className="text-slate-500 mb-8 font-medium">Se perderán todos los datos actuales y volverás a la pantalla de inicio. Esta acción no se puede deshacer.</p>
             <div className="flex flex-col gap-3">
-              <button 
+              <button
                 onClick={restartSimulation}
                 className="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 rounded-xl transition-colors shadow-lg shadow-rose-600/20"
               >
                 Sí, reiniciar todo
               </button>
-              <button 
+              <button
                 onClick={() => setShowRestartConfirm(false)}
                 className="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 rounded-xl transition-colors"
               >
@@ -150,9 +158,9 @@ const App: React.FC = () => {
           <span className="text-slate-300 font-thin text-xl">/</span>
           <span className="text-slate-600 font-semibold text-sm bg-slate-100 px-3 py-1 rounded-full border border-slate-200">Año {simulation.config.currentYear > simulation.config.totalYears ? simulation.config.totalYears : simulation.config.currentYear} de {simulation.config.totalYears}</span>
         </div>
-        
+
         <div className="flex items-center gap-3">
-          <button 
+          <button
             onClick={confirmRestart}
             className="flex items-center gap-2 px-3 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 rounded-lg border border-slate-200 transition-all"
           >
@@ -163,7 +171,7 @@ const App: React.FC = () => {
           </button>
 
           {gameState === 'PLAYING' && (
-            <button 
+            <button
               onClick={finishSimulation}
               className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-lg font-bold shadow-md transition-all flex items-center gap-2 text-sm"
             >
@@ -183,9 +191,9 @@ const App: React.FC = () => {
               {/* Form Side */}
               <div className="lg:col-span-4 space-y-6">
                 {!simulation.config.isFinished && simulation.config.currentYear <= simulation.config.totalYears && (
-                  <YearForm 
-                    year={simulation.config.currentYear} 
-                    onSimulate={handleSimulateYear} 
+                  <YearForm
+                    year={simulation.config.currentYear}
+                    onSimulate={handleSimulateYear}
                     loading={loading}
                     lastResult={simulation.results[simulation.results.length - 1]}
                   />
@@ -219,12 +227,12 @@ const App: React.FC = () => {
               <div className="lg:col-span-8 space-y-8">
                 {simulation.results.length > 0 ? (
                   <>
-                    <FinancialDashboard 
-                      result={simulation.results[simulation.results.length - 1]} 
+                    <FinancialDashboard
+                      result={simulation.results[simulation.results.length - 1]}
                       history={simulation.results}
                       currentInput={simulation.lastInput || { unitPrice: 0, unitVariableCost: 0 }}
                     />
-                    
+
                     {/* Evolution Chart */}
                     <div className="bg-white p-6 rounded-xl shadow-md border border-slate-200 transition-colors">
                       <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2 font-montserrat">
@@ -238,60 +246,60 @@ const App: React.FC = () => {
                           <BarChart data={simulation.results} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                             <defs>
                               <linearGradient id="barGradientBlue" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stopColor="#2563eb" stopOpacity={1}/>
-                                <stop offset="100%" stopColor="#3b82f6" stopOpacity={0.8}/>
+                                <stop offset="0%" stopColor="#2563eb" stopOpacity={1} />
+                                <stop offset="100%" stopColor="#3b82f6" stopOpacity={0.8} />
                               </linearGradient>
                               <linearGradient id="barGradientSlate" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stopColor="#94a3b8" stopOpacity={1}/>
-                                <stop offset="100%" stopColor="#cbd5e1" stopOpacity={0.8}/>
+                                <stop offset="0%" stopColor="#94a3b8" stopOpacity={1} />
+                                <stop offset="100%" stopColor="#cbd5e1" stopOpacity={0.8} />
                               </linearGradient>
                             </defs>
                             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
-                            <XAxis 
-                              dataKey="year" 
-                              stroke="#64748b" 
-                              tickFormatter={(v) => `Año ${v}`} 
+                            <XAxis
+                              dataKey="year"
+                              stroke="#64748b"
+                              tickFormatter={(v) => `Año ${v}`}
                               tick={{ fontSize: 12, fontWeight: 600 }}
                               axisLine={false}
                               tickLine={false}
                               dy={10}
                             />
-                            <YAxis 
-                              stroke="#64748b" 
+                            <YAxis
+                              stroke="#64748b"
                               tick={{ fontSize: 12, fontWeight: 600 }}
                               axisLine={false}
                               tickLine={false}
-                              tickFormatter={(v) => `${(v/1000).toFixed(0)}k`}
+                              tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`}
                             />
-                            <Tooltip 
+                            <Tooltip
                               cursor={{ fill: '#f8fafc' }}
-                              contentStyle={{ 
-                                borderRadius: '12px', 
-                                border: 'none', 
+                              contentStyle={{
+                                borderRadius: '12px',
+                                border: 'none',
                                 backgroundColor: '#ffffff',
                                 color: '#0f172a',
                                 boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
                                 fontFamily: 'Poppins, sans-serif'
                               }}
                             />
-                            <Legend 
-                              verticalAlign="top" 
+                            <Legend
+                              verticalAlign="top"
                               align="right"
                               iconType="circle"
                               wrapperStyle={{ paddingBottom: '20px', fontSize: '12px', fontWeight: 600, color: '#0f172a' }}
                             />
-                            <Bar 
-                              name="Beneficio Neto" 
-                              dataKey="netIncome" 
-                              fill="url(#barGradientBlue)" 
-                              radius={[6, 6, 0, 0]} 
+                            <Bar
+                              name="Beneficio Neto"
+                              dataKey="netIncome"
+                              fill="url(#barGradientBlue)"
+                              radius={[6, 6, 0, 0]}
                               barSize={32}
                             />
-                            <Bar 
-                              name="Ingresos Totales" 
-                              dataKey="revenue" 
-                              fill="url(#barGradientSlate)" 
-                              radius={[6, 6, 0, 0]} 
+                            <Bar
+                              name="Ingresos Totales"
+                              dataKey="revenue"
+                              fill="url(#barGradientSlate)"
+                              radius={[6, 6, 0, 0]}
                               barSize={32}
                             />
                           </BarChart>
@@ -318,14 +326,24 @@ const App: React.FC = () => {
         )}
 
         {gameState === 'FINISHED' && (
-          <FinalReport 
-            results={simulation.results} 
-            npv={calculateNPV(simulation.results)} 
+          <FinalReport
+            results={simulation.results}
+            npv={calculateNPV(simulation.results)}
             aiSummary={simulation.finalReportFeedback || ""}
             onRestart={restartSimulation}
           />
         )}
       </main>
+      <footer className="bg-white border-t border-slate-200 py-4 mt-8">
+        <div className="max-w-7xl mx-auto px-6 text-center text-xs text-slate-400">
+          <p className="mb-1">Pet project de investigación de la <strong>Facultad de Ciencias Económicas, Empresariales y Turismo</strong> de la Universidad de Alcalá (UAH)</p>
+          <p className="flex items-center justify-center gap-1">
+            Powered by
+            <svg className="w-4 h-4 inline" viewBox="0 0 128 128" fill="currentColor"><path d="M64.002 0C28.655 0 0 28.655 0 64c0 35.347 28.655 64 64.002 64C99.347 128 128 99.347 128 64c0-35.345-28.653-64-63.998-64zm17.136 98.028c-.543 1.623-2.085 3.453-3.981 3.453H50.844c-1.896 0-3.439-1.83-3.982-3.453L33.846 58.01c-.542-1.623.372-2.953 2.038-2.953h14.725c1.667 0 3.37 1.33 3.802 2.953l7.589 28.523 7.59-28.523c.432-1.623 2.134-2.953 3.801-2.953h14.726c1.666 0 2.58 1.33 2.037 2.953z" /></svg>
+            <strong>Cloudflare</strong>
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
