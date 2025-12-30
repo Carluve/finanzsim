@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanzSim - Simulador Empresarial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@300;400;500;600&display=swap');
+      
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f8fafc;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Montserrat', sans-serif;
+        letter-spacing: -0.02em;
+      }
+
+      @keyframes slide-up {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      .animate-slide-up {
+        animation: slide-up 0.6s ease-out forwards;
+      }
+
+      .animate-fade-in {
+        animation: fade-in 0.8s ease-out forwards;
+      }
+
+      .stagger-1 { animation-delay: 0.1s; }
+      .stagger-2 { animation-delay: 0.2s; }
+      .stagger-3 { animation-delay: 0.3s; }
+      .stagger-4 { animation-delay: 0.4s; }
+      .stagger-5 { animation-delay: 0.5s; }
+      .stagger-6 { animation-delay: 0.6s; }
+
+      /* Estilos específicos para impresión (Exportar a PDF) */
+      @media print {
+        header, 
+        .no-print,
+        button {
+          display: none !important;
+        }
+        
+        body {
+          background-color: white !important;
+          padding: 0 !important;
+          margin: 0 !important;
+        }
+
+        .min-h-screen {
+          min-height: auto !important;
+          background-color: white !important;
+        }
+
+        main {
+          padding: 0 !important;
+          margin: 0 !important;
+          max-width: 100% !important;
+        }
+
+        .shadow-xl, .shadow-md, .shadow-sm, .shadow-2xl {
+          box-shadow: none !important;
+          border: 1px solid #e2e8f0 !important;
+        }
+
+        /* Forzar impresión de colores de fondo en Chrome/Safari */
+        * {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+
+        .rounded-2xl, .rounded-[2.5rem] {
+          border-radius: 8px !important;
+        }
+
+        section {
+          page-break-inside: avoid;
+          margin-bottom: 2rem !important;
+        }
+      }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "recharts": "https://esm.sh/recharts@^3.6.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

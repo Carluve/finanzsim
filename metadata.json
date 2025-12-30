@@ -1,0 +1,5 @@
+{
+  "name": "FinanzSim - Simulador Empresarial Educativo",
+  "description": "Una aplicación web interactiva para estudiantes de 1º de Empresariales que permite simular la gestión financiera de una empresa a lo largo de varios años, con análisis en tiempo real e informes generados por IA.",
+  "requestFramePermissions": []
+}
